@@ -8,23 +8,28 @@ const inquirer = require('inquirer');
 
 let storeEmployees = [];
 
-// questions to be prompted when program is ran in command line
+
 const questions = [
     {
         type: 'input',
         name: 'name',
-        message: 'What is your name?',
+        message: 'What is the employees name?',
     },
     {
         type: 'list',
         name: 'title',
-        message: 'Choose your job type.',
+        message: 'What is the employees position?',
         choices: ["Manager", "Engineer", "Intern"]
     },
     {
         type: 'input',
         name: 'email',
-        message: 'What is your email?',
+        message: 'What is the employees email?',
+    },
+    {
+        type: 'input',
+        name: 'id',
+        message: 'What is the employees id number?',
     },
 ];
 
@@ -32,7 +37,7 @@ const ifManager = [
     {
         type: 'input',
         name: 'credentials',
-        message: 'What is your office number?',
+        message: 'What is the managers office number?',
     },
 ];
 
@@ -40,7 +45,7 @@ const ifEngineer = [
     {
         type: 'input',
         name: 'credentials',
-        message: 'What is your github link?',
+        message: 'What is the engineers github link?',
     },
 ];
 
@@ -48,7 +53,7 @@ const ifIntern = [
     {
         type: 'input',
         name: 'credentials',
-        message: 'What is your school name?',
+        message: 'What is the interns school name?',
     },
 ];
 
@@ -62,9 +67,6 @@ const addnew = [
 ]
 
 
-
-
-// function to create readme file and import data collected from user into that file
 function writeToFile(fileName) {
 
     let startHTML = `<!DOCTYPE html>
@@ -79,8 +81,7 @@ function writeToFile(fileName) {
     <body>
 
         <div class="mt-4 p-5 bg-primary text-white rounded">
-            <h1>Jumbotron Example</h1>
-            <p>Lorem ipsum...</p>
+            <h1>My Team</h1>
         </div>
 
         <div class="container mt-3">
@@ -93,6 +94,7 @@ function writeToFile(fileName) {
                 <div class="card">
                     <div class="card-body">
                         <h4 class="card-title">${emp.name}</h4>
+                        <p class="card-text">${emp.id}</p>
                         <p class="card-text">${emp.title}</p>
                         <p class="card-text">${emp.email}</p>
                         <p class="card-text">${emp.credentials}</p>
@@ -111,7 +113,7 @@ function writeToFile(fileName) {
     
 }
 
-// function to initialize the app
+
 function init() {
 
     inquirer.prompt(questions)
@@ -133,6 +135,7 @@ function init() {
 
                     let data = {
                         name: answers.name,
+                        id: answers.id,
                         title: answers.title,
                         email: answers.email,
                         credentials: ans.credentials,
@@ -156,6 +159,6 @@ function init() {
         }));
 }
 
-// calls function to initialize app
+
 init();
 
