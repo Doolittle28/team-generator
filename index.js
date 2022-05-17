@@ -80,37 +80,40 @@ function writeToFile(fileName) {
     </head>
     <body>
 
-        <div class="mt-4 p-5 bg-primary text-white rounded">
+        <div class="m-3 p-5 bg-primary text-white rounded">
             <h1>My Team</h1>
         </div>
 
         <div class="container mt-3">
             <div class="row">`;
 
-        storeEmployees.forEach(emp => {
+    storeEmployees.forEach(emp => {
 
-            startHTML = startHTML + `
+        startHTML = startHTML + `
             <div class="col-md-4 col-sm-12">
                 <div class="card">
+                <div class="card-header text-white bg-primary">${emp.name}</div>
                     <div class="card-body">
-                        <h4 class="card-title">${emp.name}</h4>
-                        <p class="card-text">${emp.id}</p>
+                        <p class="card-text">ID: ${emp.id}</p>
                         <p class="card-text">${emp.title}</p>
-                        <p class="card-text">${emp.email}</p>
+                        <p class="card-text">Email: ${emp.email}</p>
                         <p class="card-text">${emp.credentials}</p>
                     </div>
                 </div>
             </div>`;
-        });
+    });
 
-        startHTML = startHTML + `</div></body></html>`;
+    startHTML = startHTML + `</div>
+    </body>
+    </html>`;
 
-        fs.writeFile(fileName, startHTML, (err) => {
-            err ? console.log(err) : console.log('HTML created.')
-        });
 
-        
-    
+    fs.writeFile(fileName, startHTML, (err) => {
+        err ? console.log(err) : console.log('HTML created.')
+    });
+
+
+
 }
 
 
@@ -119,17 +122,17 @@ function init() {
     inquirer.prompt(questions)
         .then((answers => {
 
-            if(answers.title === 'Manager') {
+            if (answers.title === 'Manager') {
                 var subQuestion = ifManager;
             }
-            else if(answers.title === 'Engineer') {
+            else if (answers.title === 'Engineer') {
                 var subQuestion = ifEngineer;
             }
             else {
                 var subQuestion = ifIntern;
             }
 
-            
+
             inquirer.prompt(subQuestion)
                 .then(ans => {
 
@@ -146,7 +149,7 @@ function init() {
                     inquirer.prompt(addnew)
                         .then(res => {
 
-                            if(res.addNew === 'Yes') {
+                            if (res.addNew === 'Yes') {
                                 init();
                             }
                             else {
@@ -155,7 +158,7 @@ function init() {
 
 
                         });
-                });  
+                });
         }));
 }
 
