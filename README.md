@@ -33,4 +33,4 @@
 
 ## Screenshot  
 
-![Team Generator](Assets/images/teamgeneratorscreenshot)
+![Team Generator](Assets/images/teamgeneratorscreenshot.png)
